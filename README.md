@@ -3,7 +3,7 @@
 
 
 --------------------------------
-Notes for the test_gatt.py script:
+**Notes for the _test_gatt.py_ script:
 
 *to find info about the bluetooth controller on the Raspberry Pi use the hciconfig utility:*
 `
@@ -81,8 +81,6 @@ handle: 0x0022, char properties: 0x10, char value handle: 0x0023, uuid: 273e0004
 handle: 0x0025, char properties: 0x10, char value handle: 0x0026, uuid: 273e0005-4c4d-454d-96be-f03bac821358
 handle: 0x0028, char properties: 0x10, char value handle: 0x0029, uuid: 273e0006-4c4d-454d-96be-f03bac821358
 handle: 0x002b, char properties: 0x10, char value handle: 0x002c, uuid: 273e0007-4c4d-454d-96be-f03bac821358
-[00:55:DA:B0:36:C2][LE]> char-desc 00002a05-0000-1000-8000-00805f9b34fb
-Error: Invalid start handle: 00002a05-0000-1000-8000-00805f9b34fb
 [00:55:DA:B0:36:C2][LE]> char-desc  0x20
 handle: 0x0020, uuid: 273e0003-4c4d-454d-96be-f03bac821358
 handle: 0x0021, uuid: 00002902-0000-1000-8000-00805f9b34fb
@@ -98,8 +96,6 @@ handle: 0x002a, uuid: 00002902-0000-1000-8000-00805f9b34fb
 handle: 0x002b, uuid: 00002803-0000-1000-8000-00805f9b34fb
 handle: 0x002c, uuid: 273e0007-4c4d-454d-96be-f03bac821358
 handle: 0x002d, uuid: 00002902-0000-1000-8000-00805f9b34fb
-[00:55:DA:B0:36:C2][LE]> char-read-uuid 00002a05-0000-1000-8000-00805f9b34fb
-Error: Read characteristics by UUID failed: Attribute can't be read
 [00:55:DA:B0:36:C2][LE]> char-read-uuid 00002a00-0000-1000-8000-00805f9b34fb
 handle: 0x0007 	 value: 4d 75 73 65 2d 33 36 43 32 
 [00:55:DA:B0:36:C2][LE]> 
