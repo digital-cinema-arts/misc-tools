@@ -3,7 +3,7 @@
 
 
 --------------------------------
-**Notes for the _test_gatt.py_ script:
+**Notes for the _test_gatt.py_ script:**
 
 *to find info about the bluetooth controller on the Raspberry Pi use the hciconfig utility:*
 `
@@ -42,8 +42,6 @@ sudo hcitool lecc 00:55:DA:B0:51:41
 
 `
 #!/usr/bin/python
-# -*- mode: python; coding: utf-8 -*-
-
 
 from bluetooth.ble import DiscoveryService
  
