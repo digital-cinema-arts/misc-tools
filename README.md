@@ -40,7 +40,8 @@ sudo hcitool lecc 00:55:DA:B0:51:41
 *A simple python script to scan for bluetooth devices. This is one way to get the MAC addresses from the bluetooth devices.
 
 
-`#!/usr/bin/python
+`
+#!/usr/bin/python
 # -*- mode: python; coding: utf-8 -*-
 
 
