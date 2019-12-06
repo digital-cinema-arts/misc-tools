@@ -19,6 +19,8 @@ MUSE_GATT_ATTR_PPG1 = "273e000f-4c4d-454d-96be-f03bac821358"
 MUSE_GATT_ATTR_PPG2 = "273e0010-4c4d-454d-96be-f03bac821358"
 MUSE_GATT_ATTR_PPG3 = "273e0011-4c4d-454d-96be-f03bac821358"
 
+# Change these MAC addresses to the Muse headbands you life to connect to
+
 address1 = '00:55:DA:B0:51:41'
 address2 = '00:55:DA:B0:36:C2'
 
