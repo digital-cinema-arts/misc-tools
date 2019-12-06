@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 
+'''
+This example connects to 2 Muse headbands and subscribes to the telemetry service.  The interrupt handler ( the method callback_func() ) will print the data received by the Muse devices.
+
+NOTE: Change the MAC addresses to the Muse devices you want to connect to.
+
+
+'''
+
 import pygatt
 import bitstring
 import logging
 from time import time, sleep, strftime, gmtime, localtime
 from binascii import hexlify
 
+# These are Muse specific attribites that are sent from the device after subscribing to them
 MUSE_GATT_ATTR_STREAM_TOGGLE = '273e0001-4c4d-454d-96be-f03bac821358'
 MUSE_GATT_ATTR_TP9 = '273e0003-4c4d-454d-96be-f03bac821358'
 MUSE_GATT_ATTR_AF7 = '273e0004-4c4d-454d-96be-f03bac821358'
@@ -19,12 +28,14 @@ MUSE_GATT_ATTR_PPG1 = "273e000f-4c4d-454d-96be-f03bac821358"
 MUSE_GATT_ATTR_PPG2 = "273e0010-4c4d-454d-96be-f03bac821358"
 MUSE_GATT_ATTR_PPG3 = "273e0011-4c4d-454d-96be-f03bac821358"
 
-# Change these MAC addresses to the Muse headbands you life to connect to
+
+# Change these MAC addresses to the Muse headbands you like to connect to
 
 address1 = '00:55:DA:B0:51:41'
 address2 = '00:55:DA:B0:36:C2'
 
 
+# Here's our interrupt handler
 def callback_func(handle, rawData):
     binaryData = '{}'.format(hexlify(str(rawData)))
     print("callback_func() - binaryData: ", binaryData)
@@ -44,22 +55,23 @@ def callback_func(handle, rawData):
     print ("callback_func() - temperature: ", temperature)
 
 
-
-
+# Let's log the activity
 date_time_now = strftime('%Y-%m-%d-%H.%M.%S', gmtime())
 log_filename = './gatt-test.log'
                     
                     
-# DEBUG INFO  WARNING  ERROR  CRITICAL 
+# Logging levels: DEBUG INFO  WARNING  ERROR  CRITICAL 
 logging.basicConfig(filename=log_filename, 
                     format='%(asctime)s - %(message)s', 
                     level=logging.DEBUG)
 logging.getLogger('pygatt').setLevel(logging.DEBUG)
 
+# NOTE: It's important to create an instance of an adapter for each device you plan to connect to.  This could be a dynamic array, for this test case it's only connecting to 2 devices.
 adapter1 = pygatt.GATTToolBackend('hci0')
 adapter2 = pygatt.GATTToolBackend('hci0')
 
-                
+
+# Start the loop for connecting to the devices                
 while True:
 
     try:
@@ -71,12 +83,12 @@ while True:
         
         while num_tries > 0:
             print("Trying to connect to first Muse")
-        #     device1 = adapter1.connect(address1, timeout=30, address_type=pygatt.BLEAddressType.random)
             device1 = adapter1.connect(address1, timeout=10)
             value1 = device1.subscribe(MUSE_GATT_ATTR_TELEMETRY, callback=callback_func)
 
             print("First Muse: ", device1)
 
+            # Send commands to subscribe to services on the Muse device
             if device1:
                 cmd = [0x02, 0x64, 0x0a]
                 print("First Muse: ", cmd)
@@ -96,12 +108,12 @@ while True:
         while num_tries > 0:
             print("Trying to connect to second Muse")
 
-        #     device2 = adapter1.connect(address2, timeout=30, address_type=pygatt.BLEAddressType.random)
             device2 = adapter2.connect(address2, timeout=10)
             value2 = device2.subscribe(MUSE_GATT_ATTR_TELEMETRY, callback=callback_func)
 
             print("Second Muse: ", device2)
 
+            # Send commands to subscribe to services on the Muse device
             if device2:
                 cmd = [0x02, 0x64, 0x0a]
                 print("Second Muse: ", cmd)
@@ -125,6 +137,8 @@ while True:
             adapter1.stop()
             adapter2.stop()
 
+
+# Now that we've connected to the device enter into a loop.  The date from the service that was connected to will be processed by the interrupt handler and print to he console.
 
 wait_for_interrupt = True
 
