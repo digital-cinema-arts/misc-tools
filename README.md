@@ -3,7 +3,7 @@
 
 
 --------------------------------
-**Notes for the _test_gatt.py_ script:
+**Notes for the _test_gatt.py_ script:**
 
 *to find info about the bluetooth controller on the Raspberry Pi use the hciconfig utility:*
 `
