@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 '''
-This example connects to 2 Muse headbands and subscribes to the telemetry service.  The interrupt handler ( the method callback_func() ) will print the data received by the Muse devices.
+This example connects to 2 Muse headbands and subscribes to the telemetry service.  
+The interrupt handler ( the method callback_func() ) will print the 
+data received by the Muse devices.
 
 NOTE: Change the MAC addresses to the Muse devices you want to connect to.
 
