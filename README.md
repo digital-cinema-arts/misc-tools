@@ -42,8 +42,6 @@ sudo hcitool lecc 00:55:DA:B0:51:41
 
 `
 #!/usr/bin/python
-# -*- mode: python; coding: utf-8 -*-
-
 
 from bluetooth.ble import DiscoveryService
  
