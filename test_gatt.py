@@ -16,7 +16,7 @@ import logging
 from time import time, sleep, strftime, gmtime, localtime
 from binascii import hexlify
 
-# These are Muse specific attribites that are sent from the device after subscribing to them
+# These are Muse specific attributes that are sent from the device after subscribing to them
 MUSE_GATT_ATTR_STREAM_TOGGLE = '273e0001-4c4d-454d-96be-f03bac821358'
 MUSE_GATT_ATTR_TP9 = '273e0003-4c4d-454d-96be-f03bac821358'
 MUSE_GATT_ATTR_AF7 = '273e0004-4c4d-454d-96be-f03bac821358'
@@ -37,11 +37,10 @@ address1 = '00:55:DA:B0:51:41'
 address2 = '00:55:DA:B0:36:C2'
 
 
-# Here's our interrupt handler
+# Here's the interrupt handler
 def callback_func(handle, rawData):
     binaryData = '{}'.format(hexlify(str(rawData)))
     print("callback_func() - binaryData: ", binaryData)
-#     wait_for_interrupt = False
     bit_decoder = bitstring.Bits(bytes=rawData)
     pattern = "uint:16,uint:16,uint:16,uint:16,uint:16"  # The rest is 0 padding
     data = bit_decoder.unpack(pattern)
@@ -68,7 +67,8 @@ logging.basicConfig(filename=log_filename,
                     level=logging.DEBUG)
 logging.getLogger('pygatt').setLevel(logging.DEBUG)
 
-# NOTE: It's important to create an instance of an adapter for each device you plan to connect to.  This could be a dynamic array, for this test case it's only connecting to 2 devices.
+# NOTE: It's important to create an instance of an adapter for each device you plan to connect to.  
+# This could be a dynamic array, for this test case it's only connecting to 2 devices.
 adapter1 = pygatt.GATTToolBackend('hci0')
 adapter2 = pygatt.GATTToolBackend('hci0')
 
@@ -140,7 +140,9 @@ while True:
             adapter2.stop()
 
 
-# Now that we've connected to the device enter into a loop.  The date from the service that was connected to will be processed by the interrupt handler and print to he console.
+# Now that we've connected to the device enter into a loop.  
+# The data from the service that was connected to will be processed by the interrupt handler 
+# and print to he console.
 
 wait_for_interrupt = True
 
