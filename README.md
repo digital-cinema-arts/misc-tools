@@ -1,11 +1,11 @@
 # development-tools
-## *Misc. scripts, applications and libraries for development and testing purposes.
+## Misc. scripts, applications and libraries for development and testing purposes.
 
 
-
+--------------------------------
 Notes for the test_gatt.py script:
 
-*to find out info about the bluetooth controller on the Raspberry Pi:*
+*to find info about the bluetooth controller on the Raspberry Pi use the hciconfig utility:*
 `
 pi@pi-abcs:~/dev/bluetooth/abcs-muse $ sudo hciconfig 
 hci1:	Type: Primary  Bus: UART
@@ -21,7 +21,8 @@ hci0:	Type: Primary  Bus: USB
 	TX bytes:3109 acl:0 sco:0 commands:116 errors:1
 `
 
-
+*An example of getting info and and connecting to a bluetooth device.
+`
 #!/bin/bash
 
 sudo hciconfig hci0 up
@@ -33,10 +34,13 @@ sleep 5
 
 sudo hcitool lecc 00:55:DA:B0:36:C2
 sudo hcitool lecc 00:55:DA:B0:51:41
+`
 
 
+*A simple python script to scan for bluetooth devices. This is one way to get the MAC addresses from the bluetooth devices.
 
-#!/usr/bin/python
+
+`#!/usr/bin/python
 # -*- mode: python; coding: utf-8 -*-
 
 
@@ -47,10 +51,10 @@ devices = service.discover(2)
  
 for address, name in devices.items():
     print("name: {}, address: {}".format(name, address))
+`
 
 
-
-*Using gattool to connect and query the bluetooh device*
+*Using gattool to connect and query the bluetooth device*
 
 `
 pi@pi-abcs:~/dev/bluetooth $ 
